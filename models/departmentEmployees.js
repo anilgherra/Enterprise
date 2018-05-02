@@ -2,13 +2,19 @@
 
 module.exports = (sequelize, DataTypes) => {
     var DepartmentEmployees = sequelize.define('dept_emp', {
-        emp_no: DataTypes.INTEGER,
-        dept_no: DataTypes.STRING,
+        emp_no: {
+            primarykey: true,
+            type: DataTypes.INTEGER},
+        dept_no: {
+            primarykey: true,
+            type: DataTypes.STRING
+        },
         from_date: DataTypes.DATE,
         to_date: DataTypes.DATE
     },
         {
-            freezeTableName: true
+            freezeTableName: true,
+            timestamps: false
         })
     return DepartmentEmployees
 }
