@@ -12,21 +12,26 @@ const oidc = new ExpressOIDC({
 
 
 /* GET home page. */
-router.get('/', oidc.ensureAuthenticated(),(req, res) => {
-  if (req.userinfo) {
-      console.log(req.userinfo)
-      usersContoller.getUser()
-      
-      res.render('index', {user: req.userinfo.name})
-  //   res.send(`Hi ${req.userinfo.name}!`);
+router.get('/', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.send('Logged in');
   } else {
-    res.send('Not logged in!');
+    res.send('Not logged in');
   }
-})
+});
 
+router.get('/protected', oidc.ensureAuthenticated(), (req, res) => {
+  res.send('Protected stuff');
+});
 router.get('/signup_form', (req,res) => {
   res.render('signup')
 })
+
+router.get('/logout', (req, res) => {
+  console.log('logging out')
+  req.logout();
+  res.redirect('/');
+});
 
 router.post('/signup_submit', (req,res)=> {
   usersContoller.createUser(req,res)
