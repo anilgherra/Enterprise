@@ -8,6 +8,7 @@ module.exports = {
             where: {emp_no: req.body.id},
         }).then((employee) => {
             console.log(employee.dataValues);
+            res.send({employee:employee.dataValues});
         }).catch((err) => {
             console.log(err);
         });
@@ -17,6 +18,7 @@ module.exports = {
         Employees.findAll({
             where: {first_name: req.body.firstName, last_name: req.body.lastName}
         }).then((employee) => {
+            res.send({employee:employee.dataValues});
             employee.forEach((e) => {
                 console.log(e.dataValues);
             })
@@ -30,6 +32,7 @@ module.exports = {
         Employees.findAll({
             where: {first_name: req.body.firstName}
         }).then((employee) => {
+            res.send({employee:employee.dataValues});
             employee.forEach((e) => {
                 console.log(e.dataValues);
             });
@@ -42,6 +45,7 @@ module.exports = {
         Employees.findAll({
             where: {last_name: req.body.lastName}
         }).then((employee) => {
+            res.send({employee:employee.dataValues});
             employee.forEach((e) => {
                 console.log(e.dataValues);
             });
@@ -54,6 +58,7 @@ module.exports = {
         Employees.findAll({
             where: {gender: req.body.gender,}
         }).then((employee) => {
+            res.send({employee:employee.dataValues});
             employee.forEach((e) => {
                 console.log(e.dataValues);
             });

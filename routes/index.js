@@ -10,6 +10,7 @@ const oidc = new ExpressOIDC({
   scope: 'openid profile'
 });
 var employeesController = require('../controllers/employees-controller');
+var departmentController = require('../controllers/department-Controller');
 
 /* GET home page. */
 router.get('/', oidc.ensureAuthenticated(),(req, res) => {
@@ -54,6 +55,14 @@ router.get('/lastName', (req,res)=> {
 
 router.get('/gender', (req, res)=> {
     employeesController.getEmployeesByGender(req, res);
+})
+
+router.get('/EmployeeDept', (req, res)=>{
+    departmentController.employeesByDepartment(req, res);
+})
+
+router.get('/currentDepartments', (req, res)=> {
+    departmentController.currentDeparments(req, res);
 })
 
 module.exports = router;
