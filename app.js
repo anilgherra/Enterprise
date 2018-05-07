@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 var session = require('express-session')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,6 +14,7 @@ const db = require('./models');
 
 var app = express();
 
+
 app.use(session({
     secret: 'awefijcozlwasdfaekc',
     resave: true,
@@ -21,8 +22,14 @@ app.use(session({
 }));
 
 
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 const client = new okta.Client({
-    orgUrl: 'https://dev-557331.oktapreview.com',    
+    orgUrl: 'https://dev-557331.oktapreview.com',
     token: '0090gEZ3ZmLqSh9D4RL2v7tEy8sDLR4Tsi8FG8cDW-'    // Obtained from Developer Dashboard
 });
 //okta configs
@@ -37,17 +44,10 @@ const oidc = new ExpressOIDC({
 // ExpressOIDC will attach handlers for the /login and /authorization-code/callback routes
 app.use(oidc.router);
 
-app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-
 
 
 db.sequelize.sync().then(()=> {

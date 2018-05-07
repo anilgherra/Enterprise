@@ -17,7 +17,7 @@ router.get('/', oidc.ensureAuthenticated(),(req, res) => {
   if (req.userinfo) {
       console.log(req.userinfo)
       usersContoller.getUser()
-      
+
       res.render('index', {user: req.userinfo.name})
   //   res.send(`Hi ${req.userinfo.name}!`);
   } else {
@@ -37,31 +37,39 @@ router.post('/signup_submit', (req,res)=> {
 //   res.send(JSON.stringify(req.userinfo));
 // });
 
-router.get('/getEmployee', (req,res) => {
+router.post('/getEmployee', (req,res) => {
+    console.log(req.body.id)
+
     employeesController.getEmployeesById(req, res);
 })
 
-router.get('/name', (req,res)=>{
+router.post('/name', (req,res)=>{
     employeesController.getEmployeesByFirstAndLastName(req,res);
 })
 
-router.get('/firstName', (req,res)=> {
+
+router.get('/test', (req,res)=>{
+    res.render("index")
+})
+
+
+router.post('/firstName', (req,res)=> {
     employeesController.getEmployeesByFirstName(req,res);
 })
 
-router.get('/lastName', (req,res)=> {
+router.post('/lastName', (req,res)=> {
     employeesController.getEmployeesByLastName(req, res);
 })
 
-router.get('/gender', (req, res)=> {
+router.post('/gender', (req, res)=> {
     employeesController.getEmployeesByGender(req, res);
 })
 
-router.get('/EmployeeDept', (req, res)=>{
+router.post('/EmployeeDept', (req, res)=>{
     departmentController.employeesByDepartment(req, res);
 })
 
-router.get('/currentDepartments', (req, res)=> {
+router.post('/currentDepartments', (req, res)=> {
     departmentController.currentDeparments(req, res);
 })
 

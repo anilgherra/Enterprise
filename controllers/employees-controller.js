@@ -4,11 +4,15 @@ var Employees = require('../models/index').Employees;
 module.exports = {
 
     getEmployeesById: function (req, res) {
+        console.log('im here')
+        console.log(req.body.id)
+
         Employees.find({
             where: {emp_no: req.body.id},
         }).then((employee) => {
-            console.log(employee.dataValues);
-            res.send({employee:employee.dataValues});
+            res.render('employee',{employee})
+           // res.send({employee:employee.name});
+
         }).catch((err) => {
             console.log(err);
         });
