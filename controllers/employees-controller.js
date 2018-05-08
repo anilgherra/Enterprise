@@ -3,6 +3,18 @@ var Employees = require('../models/index').Employees;
 
 module.exports = {
 
+    getAllEmployees: function(req, res) {
+        Employees.findAll({ limit:100
+
+        }).then((employee)=>{
+            res.render('view_all', {employee:employee})
+            employee.forEach((e)=>{
+                console.log(e.dataValues);
+            })
+        })
+    },
+
+
     getEmployeesById: function (req, res) {
         console.log('im here')
         console.log(req.body.id)
@@ -10,8 +22,8 @@ module.exports = {
         Employees.find({
             where: {emp_no: req.body.id},
         }).then((employee) => {
-            res.render('employee',{employee})
-           // res.send({employee:employee.name});
+            res.render('view_employee1',{employee: employee})
+           console.log(employee.dataValues);
 
         }).catch((err) => {
             console.log(err);
@@ -32,11 +44,11 @@ module.exports = {
 
     },
 
-    getEmployeesByFirstName: function (req, res) {
+     getEmployeesByFirstName: function (req, res) {
         Employees.findAll({
             where: {first_name: req.body.firstName}
         }).then((employee) => {
-            res.send({employee:employee.dataValues});
+            res.send({employee:employee});
             employee.forEach((e) => {
                 console.log(e.dataValues);
             });
@@ -49,7 +61,7 @@ module.exports = {
         Employees.findAll({
             where: {last_name: req.body.lastName}
         }).then((employee) => {
-            res.send({employee:employee.dataValues});
+            res.send({employee:employee});
             employee.forEach((e) => {
                 console.log(e.dataValues);
             });

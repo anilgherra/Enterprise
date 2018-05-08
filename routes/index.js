@@ -11,6 +11,7 @@ const oidc = new ExpressOIDC({
 });
 var employeesController = require('../controllers/employees-controller');
 var departmentController = require('../controllers/department-Controller');
+var manipulateDataController = require('../controllers/manipulateData-controller');
 
 /* GET home page. */
 router.get('/', oidc.ensureAuthenticated(),(req, res) => {
@@ -41,10 +42,24 @@ router.post('/getEmployee', (req,res) => {
     console.log(req.body.id)
 
     employeesController.getEmployeesById(req, res);
+
 })
 
 router.post('/name', (req,res)=>{
     employeesController.getEmployeesByFirstAndLastName(req,res);
+})
+
+router.post('/addEmployee', (req, res)=>{
+    manipulateDataController.addEmployees(req,res);
+})
+
+
+router.get('/view_all', (req,res) =>{
+    employeesController.getAllEmployees(req, res);
+})
+
+router.get('/view_employee', (req,res) =>{
+   res.render("view_employee");
 })
 
 
@@ -69,8 +84,23 @@ router.post('/EmployeeDept', (req, res)=>{
     departmentController.employeesByDepartment(req, res);
 })
 
-router.post('/currentDepartments', (req, res)=> {
+router.get('/currentDepartments', (req, res)=> {
+    console.log('here');
     departmentController.currentDeparments(req, res);
+})
+
+router.post('/addEmployee', (req, res) => {
+    manipulateDataController.addEmployees(req, res);
+})
+
+router.get('/logout', (req, res) => {
+    console.log('logging out')
+    req.logout();
+    res.redirect('/');
+});
+
+router.get('/userInfo',oidc.ensureAuthenticated(), (req, res) => {
+    res.send({user:req.userinfo});
 })
 
 module.exports = router;

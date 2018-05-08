@@ -21,7 +21,7 @@ module.exports = ({
 
     currentDeparments: function(req, res) {
         sequelize.query('select dept_name from departments').spread((result, metadata)=> {
-            res.send({employee:employees});
+            res.send({departments:result});
             result.forEach((r)=> {
                 console.log(r.dept_name);
             })
