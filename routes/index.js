@@ -67,6 +67,11 @@ router.get('/test', (req,res)=>{
     res.render("index")
 })
 
+router.get('/add_employee', (req,res)=>{
+    res.render("add_employee")
+})
+
+
 
 router.post('/firstName', (req,res)=> {
     employeesController.getEmployeesByFirstName(req,res);
@@ -85,7 +90,6 @@ router.post('/EmployeeDept', (req, res)=>{
 })
 
 router.get('/currentDepartments', (req, res)=> {
-    console.log('here');
     departmentController.currentDeparments(req, res);
 })
 
@@ -97,7 +101,7 @@ router.get('/logout', (req, res) => {
     console.log('logging out')
     req.logout();
     res.redirect('/');
-});
+})
 
 router.get('/userInfo',oidc.ensureAuthenticated(), (req, res) => {
     res.send({user:req.userinfo});

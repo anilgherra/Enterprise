@@ -7,38 +7,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin - Start Bootstrap Template</title>
-    <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template-->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link href="stylesheets/sb-admin.css" rel="stylesheet">
+    <title>BDK Enterprise </title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 
 
 <form action = "/addEmployee" method = "post">
-    <label> Enter Employee Id: </label>
-    <input type = "text" placeholder="Enter Id" name = "empNo"> </input><br/>
-    <label> Enter Employee birthday: </label>
-    <input type = "text" placeholder="mm/dd/yyyy" name = "birthDate"> </input><br/>
-    <label> Enter Employee firstname: </label>
-    <input type = "text" placeholder="first name" name = "firstName"> </input><br/>
-    <label> Enter Employee lastname: </label>
-    <input type = "text" placeholder="last name" name = "lastName"> </input><br/>
-    <label> Enter Employee gender: </label>
-    <input type = "text" placeholder="gender" name = "gender"> </input><br/>
-    <label> Enter Employee hiredate: </label>
-    <input type = "text" placeholder="hire date" name = "hireDate"> </input><br/>
 
 
 
 
-    <Button class ="btn-dark" type = "submit"> Submit</Button>
+
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="First Name"  name="firstName" type="text" class="validate" required>
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Last Name"   name = "lastName" type="text" class="validate" required>
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="M/F" name = "gender" type="text" class="validate" required>
+                    <label for="gender">Gender</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Birth Date(yyyy-mm-dd)" name = "birthDate" type="text" class="validate" required>
+                    <label for="birth-date">Birthdate</label>
+                </div>
+            </div>
+    <div class="row">
+        <div class="input-field col s6">
+            <input placeholder="Employee No."  name = "empNo" type="text" class="validate" required>
+            <label for="employee no.">Employee No. </label>
+        </div>
+        <div class="input-field col s6">
+            <input placeholder="Hire Date"  name = "hireDate" type="text" class="validate" required>
+            <label for="hire_date">Hire Date </label>
+        </div>
+    </div>
+
+
+
+
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">Add Employee
+        <i class="material-icons right"></i>
+    </button>
+
 
 </form>
 
