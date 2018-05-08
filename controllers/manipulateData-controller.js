@@ -1,5 +1,6 @@
 var Employees = require('../models/index').Employees;
-
+var Salaries = require('../models/index').salaries;
+var sequelize = require('sequelize');
 module.exports = {
 
     addEmployees: function(req, res) {
@@ -22,13 +23,26 @@ module.exports = {
             where:{emp_no: req.body.id}
 
         }).then((employee) => {
+            var obj = employee.toJSON();
             return employee.destroy();
-        }).then(() => {
+        }).then((obj) => {
             console.log('Record Erased.')
         }).catch((err) => {
             console.log(err);
         })
+    },
+
+    getGeneralInfo: function(req, res) {
+            Employees.find({
+                attributes: [[sequelize.fn('Count', sequelize.col('emp_no')), 'total']]
+            }).then((employee)=>{
+                //add res.render here
+            }).catch((err)=>{
+                console.log(err);
+            })
     }
+
+
 
 
 
