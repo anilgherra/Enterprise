@@ -12,7 +12,8 @@ module.exports = {
            gender: req.body.gender,
            hire_date: req.body.hireDate
         }).then((task)=>{
-            console.log(task)
+            console.log(task);
+            res.redirect('/')
         }).catch((err)=>{
             console.log(err);
         })

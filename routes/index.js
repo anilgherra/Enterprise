@@ -61,7 +61,9 @@ router.get('/view_all', oidc.ensureAuthenticated(), (req,res) =>{
 router.get('/view_employee',  oidc.ensureAuthenticated(), (req,res) =>{
    res.render("view_employee");
 })
-
+router.get('/homepage', (req,res) =>{
+    res.render("home");
+})
 
 router.get('/add_employee', (req,res)=>{
     res.render("add_employee")
@@ -81,8 +83,8 @@ router.post('/gender', oidc.ensureAuthenticated(), (req, res)=> {
     employeesController.getEmployeesByGender(req, res);
 })
 
-router.post('/EmployeeDept', oidc.ensureAuthenticated(), (req, res)=>{
-    departmentController.employeesByDepartment(req, res);
+router.post('/Manager_dept', oidc.ensureAuthenticated(), (req, res)=>{
+    departmentController.depmartmentManagers(req, res);
 })
 
 router.get('/currentDepartments', oidc.ensureAuthenticated(), (req, res)=> {
@@ -93,7 +95,7 @@ router.get('/delete_employee', oidc.ensureAuthenticated(), (req, res)=> {
     res.render("delete_employee")
 })
 
-router.post('/addEmployee', oidc.ensureAuthenticated(), (req, res) => {
+router.post('/addEmployee', (req, res) => {
     manipulateDataController.addEmployees(req, res);
 })
 

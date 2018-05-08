@@ -32,7 +32,14 @@ module.exports = ({
         squelize.query('select * from employees e, departments d, dept_manager dm where d.dept_name =' +':deptName' + 'and d.dept_no = dm.dept_no and dm.emp_no = e.emp_no;', {
             replacements: {deptName: req.body.deptName}, type: sequelize.QueryTypes.SELECT
         }).then((manager)=>{
-            res.send({manager:manager});
+            var message3 = "Employee does not exist, Please try again."
+
+
+            if(manager){
+
+                return res.render('view_manager1',{manager: manager, message: false})
+            }
+            return  res.render('view_manager1',{message: true, message1: message3})
             manager.forEach((m)=>{
                 console.log(m)
             }).catch((err)=>{
