@@ -38,27 +38,27 @@ router.post('/signup_submit', (req,res)=> {
 //   res.send(JSON.stringify(req.userinfo));
 // });
 
-router.post('/getEmployee', (req,res) => {
+router.post('/getEmployee', oidc.ensureAuthenticated(), (req,res) => {
     console.log(req.body.id)
 
     employeesController.getEmployeesById(req, res);
 
 })
 
-router.post('/name', (req,res)=>{
+router.post('/name', oidc.ensureAuthenticated(), (req,res)=>{
     employeesController.getEmployeesByFirstAndLastName(req,res);
 })
 
-router.post('/addEmployee', (req, res)=>{
+router.post('/addEmployee', oidc.ensureAuthenticated(), (req, res)=>{
     manipulateDataController.addEmployees(req,res);
 })
 
 
-router.get('/view_all', (req,res) =>{
+router.get('/view_all', oidc.ensureAuthenticated(), (req,res) =>{
     employeesController.getAllEmployees(req, res);
 })
 
-router.get('/view_employee', (req,res) =>{
+router.get('/view_employee',  oidc.ensureAuthenticated(), (req,res) =>{
    res.render("view_employee");
 })
 
@@ -73,33 +73,39 @@ router.get('/add_employee', (req,res)=>{
 
 
 
-router.post('/firstName', (req,res)=> {
+router.post('/firstName', oidc.ensureAuthenticated(), (req,res)=> {
     employeesController.getEmployeesByFirstName(req,res);
 })
 
-router.post('/lastName', (req,res)=> {
+router.post('/lastName', oidc.ensureAuthenticated(), (req,res)=> {
     employeesController.getEmployeesByLastName(req, res);
 })
 
-router.post('/gender', (req, res)=> {
+router.post('/gender', oidc.ensureAuthenticated(), (req, res)=> {
     employeesController.getEmployeesByGender(req, res);
 })
 
-router.post('/EmployeeDept', (req, res)=>{
+router.post('/EmployeeDept', oidc.ensureAuthenticated(), (req, res)=>{
     departmentController.employeesByDepartment(req, res);
 })
 
-router.get('/currentDepartments', (req, res)=> {
+router.get('/currentDepartments', oidc.ensureAuthenticated(), (req, res)=> {
+    console.log('here');
     departmentController.currentDeparments(req, res);
 })
 
-router.post('/addEmployee', (req, res) => {
+router.post('/addEmployee', oidc.ensureAuthenticated(), (req, res) => {
     manipulateDataController.addEmployees(req, res);
+})
+
+router.post('/deleteEmployee', oidc.ensureAuthenticated(), (req, res)=>{
+    manipulateDataController.deleteEmployee(req,res);
 })
 
 router.get('/logout', (req, res) => {
     console.log('logging out')
     req.logout();
+    req.session.destroy();
     res.redirect('/');
 })
 
