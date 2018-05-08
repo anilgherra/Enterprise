@@ -1,15 +1,31 @@
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize('Employees', 'employees', 'employees123', {
-    host: 'localhost',
-    dialect: 'mysql'
-});
+var Employees = require('../models/index').Employees;
 
 module.exports = {
 
     addEmployees: function(req, res) {
-        sequelize.query("insert into employees(:empNo, :birthDate, :firstName, :lastName, :gender, :hireDate) values(emp_no, birth_date, first_name, last_name, gender, hire_date);", {
-            replacements: {empNo: req.body.empNo, birthDate: req.body.birthDate, firstName: req.body.firstName, lastName: req.body.lastName, gender:req.body.gender, hireDate: req.body.hireDate},  type: sequelize.QueryTypes.SELECT
+        Employees.create({
+           emp_no: req.body.empNo,
+           birth_date: req.body.birthDate,
+           first_name: req.body.firstName,
+           last_name: req.body.lastName,
+           gender: req.body.gender,
+           hire_date: req.body.hireDate
+        }).then((task)=>{
+            console.log(task)
         }).catch((err)=>{
+            console.log(err);
+        })
+    },
+
+    deleteEmployee: function(req, res) {
+        Employees.find({
+            where:{emp_no: req.body.id}
+
+        }).then((employee) => {
+            return employee.destroy();
+        }).then(() => {
+            console.log('Record Erased.')
+        }).catch((err) => {
             console.log(err);
         })
     }
