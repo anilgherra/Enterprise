@@ -82,48 +82,8 @@
 
         </ol>
 
-        <!-- Icon Cards-->
-        <% if(message === true){ %>
-        <h3> <%= message1 %> </h3>
-        <% } else if(employee){ %>
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <%- include partials/delete.ejs%>
 
-                <tr>
-                    <th>id</th>
-
-                    <th>First Name </th>
-                    <th>Last Name </th>
-                    <th>Gender </th>
-                    <th>Hire Date </th>
-                </tr>
-
-
-                <tr>
-
-
-
-
-                    <td><%= employee['emp_no'] %></td>
-                    <td><%= employee['first_name'] %></td>
-                    <td><%= employee['last_name'] %></td>
-                    <td><%= employee['gender'] %></td>
-                    <td><%= employee['hire_date'] %></td>
-
-
-
-
-
-                </tr>
-
-
-            </table>
-        </div>
-        <% } %>
-
-
-        <!-- /.container-fluid-->
-        <!-- /.content-wrapper-->
         <footer class="sticky-footer">
             <div class="container">
                 <div class="text-center">

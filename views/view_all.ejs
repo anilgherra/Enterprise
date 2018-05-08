@@ -2,26 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>BDK Enterprise </title>
-    <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template-->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link href="stylesheets/sb-admin.css" rel="stylesheet">
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <%- include partials/dependencies.ejs%>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+
+
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -40,7 +29,7 @@
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/currentDepartments">
                     <i class="fa fa-fw fa-area-chart"></i>
                     <span class="nav-link-text">Departments</span>
                 </a>
@@ -62,7 +51,7 @@
                         <a href="/add_employee">Add Employee</a>
                     </li>
                     <li>
-                        <a href="#">Remove Employee</a>
+                        <a href="/delete_employee">Remove Employee</a>
                     </li>
                 </ul>
             </li>
@@ -99,19 +88,22 @@
         </ol>
         <!-- Icon Cards-->
 
-    <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
+
+            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+            <thead>
             <tr>
                 <th>id</th>
-
                 <th>First Name </th>
                 <th>Last Name </th>
                 <th>Gender </th>
                 <th>Hire Date </th>
-            </tr>
 
-            <% for (var i = 0; i < 100; i++) { %>
+            </tr>
+            </thead>
+
+            <% for (var i = 0; i < 500; i++) { %>
+            <tbody>
             <tr>
                 <td><%= employee[i]['emp_no'] %></td>
                 <td><%= employee[i]['first_name'] %></td>
@@ -120,9 +112,10 @@
                 <td><%= employee[i]['hire_date'] %></td>
 
             </tr>
+            </tbody>
             <% } %>
         </table>
-</div>
+
 
 
         <!-- /.container-fluid-->
@@ -157,21 +150,18 @@
             </div>
         </div>
         <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
+
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Core plugin JavaScript-->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
         <!-- Page level plugin JavaScript-->
-        <script src="vendor/chart.js/Chart.min.js"></script>
-        <script src="vendor/datatables/jquery.dataTables.js"></script>
-        <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin.min.js"></script>
-        <!-- Custom scripts for this page-->
-        <script src="js/sb-admin-datatables.min.js"></script>
-        <script src="js/sb-admin-charts.min.js"></script>
+
+
+
+
     </div>
 </div>
 </body>
 
 </html>
+

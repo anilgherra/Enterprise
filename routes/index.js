@@ -38,7 +38,7 @@ router.post('/signup_submit', (req,res)=> {
 //   res.send(JSON.stringify(req.userinfo));
 // });
 
-router.post('/getEmployee', oidc.ensureAuthenticated(), (req,res) => {
+router.post('/getEmployee', (req,res) => {
     console.log(req.body.id)
 
     employeesController.getEmployeesById(req, res);
@@ -63,10 +63,6 @@ router.get('/view_employee',  oidc.ensureAuthenticated(), (req,res) =>{
 })
 
 
-router.get('/test', (req,res)=>{
-    res.render("index")
-})
-
 router.get('/add_employee', (req,res)=>{
     res.render("add_employee")
 })
@@ -90,8 +86,11 @@ router.post('/EmployeeDept', oidc.ensureAuthenticated(), (req, res)=>{
 })
 
 router.get('/currentDepartments', oidc.ensureAuthenticated(), (req, res)=> {
-    console.log('here');
+
     departmentController.currentDeparments(req, res);
+})
+router.get('/delete_employee', oidc.ensureAuthenticated(), (req, res)=> {
+    res.render("delete_employee")
 })
 
 router.post('/addEmployee', oidc.ensureAuthenticated(), (req, res) => {

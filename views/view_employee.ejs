@@ -3,20 +3,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>BDK Enterprise </title>
-    <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template-->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link href="stylesheets/sb-admin.css" rel="stylesheet">
+
+    <%- include partials/dependencies.ejs%>
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -35,7 +24,7 @@
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/currentDepartments">
                     <i class="fa fa-fw fa-area-chart"></i>
                     <span class="nav-link-text">Departments</span>
                 </a>
@@ -57,7 +46,7 @@
                         <a href="/add_employee">Add Employee</a>
                     </li>
                     <li>
-                        <a href="#">Remove Employee</a>
+                        <a href="/delete_employee">Remove Employee</a>
                     </li>
                 </ul>
             </li>

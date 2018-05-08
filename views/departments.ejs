@@ -1,10 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <%- include partials/dependencies.ejs%>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+
+
 
 </head>
 
@@ -40,7 +45,7 @@
                         <a href="/view_all">View All Employees</a>
                     </li>
                     <li>
-                        <a href="view_employee">View A employee</a>
+                        <a href="/view_employee">View A employee</a>
                     </li>
                     <li>
                         <a href="/add_employee">Add Employee</a>
@@ -81,45 +86,35 @@
             </li>
 
         </ol>
-
         <!-- Icon Cards-->
-        <% if(message === true){ %>
-        <h3> <%= message1 %> </h3>
-        <% } else if(employee){ %>
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                <tr>
-                    <th>id</th>
-
-                    <th>First Name </th>
-                    <th>Last Name </th>
-                    <th>Gender </th>
-                    <th>Hire Date </th>
-                </tr>
-
-
-                <tr>
 
 
 
 
-                    <td><%= employee['emp_no'] %></td>
-                    <td><%= employee['first_name'] %></td>
-                    <td><%= employee['last_name'] %></td>
-                    <td><%= employee['gender'] %></td>
-                    <td><%= employee['hire_date'] %></td>
+            <% for (var i = 0; i < 9; i++) { %>
 
 
 
 
+        <div class="col s12 m7">
+            <h4 class="header"><%= departments[i]['dept_no'] %></h4>
+            <div class="card horizontal">
 
-                </tr>
-
-
-            </table>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>  <td><%= departments[i]['dept_name'] %></td></p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#"></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <% } %>
+
+
+            <% } %>
+
+
 
 
         <!-- /.container-fluid-->
@@ -154,21 +149,18 @@
             </div>
         </div>
         <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
+
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Core plugin JavaScript-->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
         <!-- Page level plugin JavaScript-->
-        <script src="vendor/chart.js/Chart.min.js"></script>
-        <script src="vendor/datatables/jquery.dataTables.js"></script>
-        <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin.min.js"></script>
-        <!-- Custom scripts for this page-->
-        <script src="js/sb-admin-datatables.min.js"></script>
-        <script src="js/sb-admin-charts.min.js"></script>
+
+
+
+
     </div>
 </div>
 </body>
 
 </html>
+

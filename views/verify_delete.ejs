@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <a class="nav-link" href="/currentDepartments">
+                <a class="nav-link" href="charts.html">
                     <i class="fa fa-fw fa-area-chart"></i>
                     <span class="nav-link-text">Departments</span>
                 </a>
@@ -82,10 +82,7 @@
 
         </ol>
 
-        <!-- Icon Cards-->
-        <% if(message === true){ %>
-        <h3> <%= message1 %> </h3>
-        <% } else if(employee){ %>
+        <h3> Deleted Employee from records.</h3>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
@@ -100,27 +97,17 @@
 
 
                 <tr>
-
-
-
-
-                    <td><%= employee['emp_no'] %></td>
-                    <td><%= employee['first_name'] %></td>
-                    <td><%= employee['last_name'] %></td>
-                    <td><%= employee['gender'] %></td>
-                    <td><%= employee['hire_date'] %></td>
-
-
-
-
+                    <td><%= obj['emp_no'] %></td>
+                    <td><%= obj['first_name'] %></td>
+                    <td><%= obj['last_name'] %></td>
+                    <td><%= obj['gender'] %></td>
+                    <td><%= obj['hire_date'] %></td>
 
                 </tr>
 
 
             </table>
         </div>
-        <% } %>
-
 
         <!-- /.container-fluid-->
         <!-- /.content-wrapper-->

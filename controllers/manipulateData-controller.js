@@ -22,9 +22,11 @@ module.exports = {
             where:{emp_no: req.body.id}
 
         }).then((employee) => {
+            var obj = employee.toJSON();
+            var message = "Deleted below employee."
             return employee.destroy();
-        }).then(() => {
-            console.log('Record Erased.')
+        }).then((obj) => {
+            res.render("verify_delete", {obj})
         }).catch((err) => {
             console.log(err);
         })

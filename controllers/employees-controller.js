@@ -4,7 +4,7 @@ var Employees = require('../models/index').Employees;
 module.exports = {
 
     getAllEmployees: function(req, res) {
-        Employees.findAll({ limit:100
+        Employees.findAll({ limit:500
 
         }).then((employee)=>{
             res.render('view_all', {employee:employee})
@@ -16,14 +16,19 @@ module.exports = {
 
 
     getEmployeesById: function (req, res) {
-        console.log('im here')
-        console.log(req.body.id)
 
         Employees.find({
             where: {emp_no: req.body.id},
         }).then((employee) => {
-            res.render('view_employee1',{employee: employee})
-           console.log(employee.dataValues);
+            var message3 = "Employee does not exist, Please try again."
+            var message2 = "Found a match."
+
+            if(employee){
+
+                return res.render('view_employee1',{employee: employee, message: false})
+            }
+           return  res.render('view_employee1',{message: true, message1: message3})
+
 
         }).catch((err) => {
             console.log(err);
