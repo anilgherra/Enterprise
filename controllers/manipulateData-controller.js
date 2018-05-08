@@ -1,5 +1,6 @@
 var Employees = require('../models/index').Employees;
-
+var Salaries = require('../models/index').salaries;
+var sequelize = require('sequelize');
 module.exports = {
 
     addEmployees: function(req, res) {
@@ -30,6 +31,16 @@ module.exports = {
         }).catch((err) => {
             console.log(err);
         })
+    },
+
+    getGeneralInfo: function(req, res) {
+            Employees.find({
+                attributes: [[sequelize.fn('Count', sequelize.col('emp_no')), 'total']]
+            }).then((employee)=>{
+                //add res.render here
+            }).catch((err)=>{
+                console.log(err);
+            })
     }
 
 

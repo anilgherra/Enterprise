@@ -101,6 +101,10 @@ router.post('/deleteEmployee', oidc.ensureAuthenticated(), (req, res)=>{
     manipulateDataController.deleteEmployee(req,res);
 })
 
+router.get('/general', oidc.ensureAuthenticated(), (req, res)=>{
+    manipulateDataController.getGeneralInfo(req,res);
+})
+
 router.get('/logout', (req, res) => {
     console.log('logging out')
     req.logout();
